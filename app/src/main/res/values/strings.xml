@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Timer</string>
+    <string name="Start">Start</string>
+    <string name="Stop">Stop</string>
+    <string name="Save">Save</string>
+    <string name="clean">Clean</string>
 </resources>
