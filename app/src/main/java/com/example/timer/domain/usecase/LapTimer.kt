@@ -1,23 +1,13 @@
 package com.example.timer.domain.usecase
 
+import com.example.timer.domain.model.SaveTimerParam
+import com.example.timer.domain.model.TimerParam
+import com.example.timer.domain.repository.TimerRepository
 import java.util.*
 
-class LapTimer {
-    private var timer: Timer? = null
-    private val timerTask
-        get() = object : TimerTask(){
-            override fun run() {
-                count++
-            }
-        }
-    private var count = -1
-    fun startTimer(){
-        timer = Timer()
-        timer?.scheduleAtFixedRate(timerTask,0,1000)
-    }
-    fun stopTimer(){
-        timer?.cancel()
-        timer=null
-        count=-1
+class LapTimer(val timerRepository: TimerRepository) {
+
+    fun execute(): TimerParam {
+        return timerRepository.loadTimer()
     }
 }

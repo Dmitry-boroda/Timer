@@ -7,10 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/text_timer"
@@ -22,33 +18,30 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
-            android:layout_weight="0.5"
-            android:layout_gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/material_emphasis_high_type">
+            android:layout_height="wrap_content">
             <Button
+                android:layout_weight="1"
                 android:id="@+id/clean_button"
                 style="@style/ButtonStyle"
                 android:text="@string/clean"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/startStop_button"
                 style="@style/ButtonStyle"
                 android:text="@string/Start"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/saveTimer_button"
                 style="@style/ButtonStyle"
                 android:text="@string/Save"
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

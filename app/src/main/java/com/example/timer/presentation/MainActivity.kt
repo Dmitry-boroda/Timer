@@ -7,27 +7,30 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.timer.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: TimerViewModel
+    private val viewModel by viewModel<TimerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this, TimerViewModelFactory(this))
-            .get(TimerViewModel::class.java)
-
         setContentView(R.layout.activity_main)
         val textView = findViewById<TextView>(R.id.text_timer)
         val startButton = findViewById<Button>(R.id.startStop_button)
+        val observable = TextObservable()
 
-        viewModel.milsecLiveData.observe(this, Observer {
-            textView.text = it.toString()
+        observable.observable(object : TextCallback{
+            override fun updateText(str: String)= runOnUiThread{
+                textView.text = str
+        }
         })
+        viewModel.init(observable)
 
         startButton.setOnClickListener {
-
+            viewModel.startTimer()
         }
+
     }
 }

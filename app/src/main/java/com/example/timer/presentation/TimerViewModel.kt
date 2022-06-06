@@ -4,21 +4,27 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.timer.domain.usecase.LapTimer
+import com.example.timer.domain.model.TimerModel
+
 
 class TimerViewModel(
-    //private val lapTimer: LapTimer
+    //private val lapTimer: LapTimer,
+    //private val saveTimer: SaveTimer,
+    private val timerModel: TimerModel
     ): ViewModel() {
 
-    private val milsecMutableLiveData = MutableLiveData<Int>()
-    private val secondMutableLiveData = MutableLiveData<Int>()
-    private val minuteMutableLiveData = MutableLiveData<Int>()
+    private var textObservable: TextObservable?=null
 
-    val milsecLiveData: LiveData<Int> = milsecMutableLiveData
-    val secondLiveData: LiveData<Int> = secondMutableLiveData
-    val minuteLiveData: LiveData<Int> = minuteMutableLiveData
+    private val textCallback = object : TextCallback{
+        override fun updateText(str: String){
+            textObservable?.postValue(str)
+        }
+    }
+    private val minuteMutableLiveData = MutableLiveData<String>()
+    val minuteLiveData: LiveData<String> = minuteMutableLiveData
 
-    init {
+    fun init(textObservable: TextObservable) {
+        this.textObservable = textObservable
         Log.e("AAA","ViewModel Create")
     }
 
@@ -27,4 +33,20 @@ class TimerViewModel(
         super.onCleared()
     }
 
+
+    fun startTimer(){
+        timerModel.startTimer(textCallback)
+    }
+}
+class TextObservable{
+    private lateinit var callback: TextCallback
+    fun observable(callback: TextCallback){
+        this.callback = callback
+    }
+    fun postValue(text: String){
+        callback.updateText(text)
+    }
+}
+interface TextCallback{
+    fun updateText(str: String)
 }
