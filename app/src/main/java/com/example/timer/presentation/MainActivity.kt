@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<TimerViewModel>()
 
+    // пробую merge код
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

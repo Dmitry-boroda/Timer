@@ -25,14 +25,12 @@ class TimerViewModel(
 
     fun init(textObservable: TextObservable) {
         this.textObservable = textObservable
-        Log.e("AAA","ViewModel Create")
     }
 
     override fun onCleared() {
         Log.e("AAA", "ViewModel Cleared")
         super.onCleared()
     }
-
 
     fun startTimer(){
         timerModel.startTimer(textCallback)

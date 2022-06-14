@@ -11,17 +11,13 @@ class TimerModel (){
         get() = object : TimerTask(){
             override fun run() {
                 count++
-                callback?.updateText(
-                    toString(count)
-                )
-                Log.e("AAA","$count")
+                callback?.updateText(toString(count))
             }
         }
     private var callback: TextCallback? =null
     private var count = -1
     fun startTimer(textCallback: TextCallback){
         callback= textCallback
-        Log.e("AAA","Start Timer")
         timer = Timer()
         timer?.scheduleAtFixedRate(timerTask,0,1)
     }
