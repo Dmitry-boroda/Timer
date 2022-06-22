@@ -7,8 +7,8 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel<TimerViewModel> {
         TimerViewModel(
-            //lapTimer = get(),
-            //saveTimer = get(),
+            lapTimer = get(),
+            saveTimer = get(),
             timerModel = get()
         )
     }

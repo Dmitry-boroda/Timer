@@ -17,16 +17,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        val textView = findViewById<TextView>(R.id.text_timer)
-        val startButton = findViewById<Button>(R.id.startStop_button)
 
-        viewModel.minuteLiveData.observe(this, Observer{
+        val textView = findViewById<TextView>(R.id.text_timer)
+        val loadView = findViewById<TextView>(R.id.load_timer)
+
+        val startButton = findViewById<Button>(R.id.startStop_button)
+        val saveButton = findViewById<Button>(R.id.saveTimer_button)
+
+        viewModel.timerLiveData.observe(this, Observer{
             textView.text = it
+        })
+        viewModel.loadTimerLiveData.observe(this, Observer {
+            loadView.text = it
         })
 
         startButton.setOnClickListener {
             viewModel.startTimer()
         }
 
+        saveButton.setOnClickListener {
+            viewModel.saveTimer(textView.text.toString())
+        }
     }
 }

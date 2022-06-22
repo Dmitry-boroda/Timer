@@ -9,7 +9,11 @@
     tools:context=".presentation.MainActivity">
 
         <TextView
+            android:id="@+id/load_timer"
+            android:gravity="center"
+            tools:text="00.00.00"
             android:layout_weight="1"
+            style="@style/TimerStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -15,6 +15,7 @@ class TimerModel (){
         }
     private var callback: TextCallback? =null
     private var count = -1
+
     fun startTimer(textCallback: TextCallback){
         callback= textCallback
         timer = Timer()
