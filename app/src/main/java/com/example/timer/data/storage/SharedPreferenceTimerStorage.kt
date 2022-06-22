@@ -8,13 +8,13 @@ class SharedPreferenceTimerStorage(context: Context): TimerStorage {
     private val sharedPreferences = context.getSharedPreferences("timer",Context.MODE_PRIVATE)
 
     override fun save(timerModelStorage: TimerModelStorage): Boolean {
-        sharedPreferences.edit().putInt("Minute",timerModelStorage.timerMinute)
+        sharedPreferences.edit().putString("timer",timerModelStorage.timerStorage)
         return true
     }
 
     override fun load(): TimerModelStorage {
         return TimerModelStorage(
-            sharedPreferences.getInt("Minute",0)
+            sharedPreferences.getString("timer","")?:""
         )
     }
 }

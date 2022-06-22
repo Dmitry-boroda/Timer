@@ -16,10 +16,10 @@ class TimerRepositoryImpl(private val timerStorage: TimerStorage): TimerReposito
     }
 
     private fun mapToStorage(saveParams: SaveTimerParam):TimerModelStorage{
-        return TimerModelStorage(saveParams.minuteTimer)
+        return TimerModelStorage(saveParams.timerParam)
     }
     private fun mapToDomain(timerModelStorage: TimerModelStorage): TimerParam{
-        return TimerParam(timerModelStorage.timerMinute)
+        return TimerParam(timerModelStorage.timerStorage)
     }
 
 

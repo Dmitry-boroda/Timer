@@ -1,6 +1,5 @@
 package com.example.timer.domain.model
 
-import android.util.Log
 import com.example.timer.presentation.TextCallback
 import java.util.*
 
@@ -31,5 +30,5 @@ class TimerModel (){
                 "${String.format("%tS",time.toLong())}." +
                 String.format("%tL",time.toLong())
     }
-
 }
+

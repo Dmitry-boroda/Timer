@@ -13,22 +13,16 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<TimerViewModel>()
 
-    // пробую merge код
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
         val textView = findViewById<TextView>(R.id.text_timer)
         val startButton = findViewById<Button>(R.id.startStop_button)
-        val observable = TextObservable()
 
-        observable.observable(object : TextCallback{
-            override fun updateText(str: String)= runOnUiThread{
-                textView.text = str
-        }
+        viewModel.minuteLiveData.observe(this, Observer{
+            textView.text = it
         })
-        viewModel.init(observable)
 
         startButton.setOnClickListener {
             viewModel.startTimer()

@@ -1,3 +1,3 @@
 package com.example.timer.domain.model
 
-class TimerParam(val timer: Int)
+class TimerParam(val timer: String)
