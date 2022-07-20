@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.text_timer)
         val loadView = findViewById<TextView>(R.id.load_timer)
         val saveButton = findViewById<Button>(R.id.saveTimer_button)
-        val customTimerView = findViewById<CustomTimerView>(R.id.clean_button)
+        val customTimerView = findViewById<CustomTimerView>(R.id.startStop_button)
 
         viewModel.timerLiveData.observe(this, Observer{
             textView.text = it
