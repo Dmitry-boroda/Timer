@@ -1,6 +1,7 @@
 package com.example.timer.presentation
 
 import android.util.Log
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,13 +29,22 @@ class TimerViewModel(
     private val loadTimerMutableLiveData = MutableLiveData<String>()
     val loadTimerLiveData: LiveData<String> = loadTimerMutableLiveData
 
+    private val stateButtonMutableLiveData = MutableLiveData<Boolean>()
+    val stateButtonLiveData: LiveData<Boolean> = stateButtonMutableLiveData
+
     override fun onCleared() {
         Log.e("AAA", "ViewModel Cleared")
         super.onCleared()
     }
 
-    fun startTimer(){
-        timerModel.startTimer(textCallback)
+    fun startTimer(stateButton: Boolean){
+        if (stateButton) {
+            timerModel.startTimer(textCallback)
+            stateButtonMutableLiveData.value = !stateButton
+        }else{
+            timerModel.stopTimer()
+            stateButtonMutableLiveData.value = !stateButton
+        }
         Log.e("AAA", "start")
     }
     fun saveTimer(timer:String){
