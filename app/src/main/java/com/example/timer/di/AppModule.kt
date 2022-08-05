@@ -9,7 +9,8 @@ val appModule = module {
         TimerViewModel(
             lapTimer = get(),
             saveTimer = get(),
-            timerModel = get()
+            timerModel = get(),
+            repositoryImpl = get()
         )
     }
 }

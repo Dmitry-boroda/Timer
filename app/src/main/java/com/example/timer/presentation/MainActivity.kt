@@ -25,12 +25,17 @@ class MainActivity : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveTimer_button)
         val customTimerView = findViewById<CustomTimerView>(R.id.startStop_button)
 
+        viewModel.allTimer.observe(this, Observer {
+            loadView.text = it.toString()
+        })
+
         viewModel.timerLiveData.observe(this, Observer{
             textView.text = it
         })
-        viewModel.loadTimerLiveData.observe(this, Observer {
-            loadView.text = it
-        })
+        //viewModel.loadTimerLiveData.observe(this, Observer {
+            //loadView.text = it
+        //})
+
         viewModel.stateButtonLiveData.observe(this, Observer {
              customTimerView.stateButton(it)
         })

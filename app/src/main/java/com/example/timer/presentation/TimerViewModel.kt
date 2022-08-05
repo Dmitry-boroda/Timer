@@ -1,21 +1,24 @@
 package com.example.timer.presentation
 
 import android.util.Log
-import android.widget.Button
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.timer.data.repository.TimerRepositoryImpl
+import com.example.timer.data.storage.room.Time
 import com.example.timer.domain.model.SaveTimerParam
 import com.example.timer.domain.model.TimerModel
 import com.example.timer.domain.model.TimerParam
 import com.example.timer.domain.usecase.LapTimer
 import com.example.timer.domain.usecase.SaveTimer
+import kotlinx.coroutines.launch
+
 
 class TimerViewModel(
     private val lapTimer: LapTimer,
     private val saveTimer: SaveTimer,
-    private val timerModel: TimerModel
+    private val timerModel: TimerModel,
+    private val repositoryImpl: TimerRepositoryImpl
     ): ViewModel() {
+
 
     private val textCallback = object : TextCallback{
         override fun updateText(str: String){
@@ -32,9 +35,11 @@ class TimerViewModel(
     private val stateButtonMutableLiveData = MutableLiveData<Boolean>()
     val stateButtonLiveData: LiveData<Boolean> = stateButtonMutableLiveData
 
-    override fun onCleared() {
-        Log.e("AAA", "ViewModel Cleared")
-        super.onCleared()
+
+    val allTimer: LiveData<List<Time>> = repositoryImpl.allTime.asLiveData()
+
+    fun insert(time: Time) = viewModelScope.launch {
+        repositoryImpl.insert(time)
     }
 
     fun startTimer(stateButton: Boolean){
@@ -48,6 +53,9 @@ class TimerViewModel(
         Log.e("AAA", "start")
     }
     fun saveTimer(timer:String){
+
+        val time = Time(timer)
+        insert(time)
 
         val param = SaveTimerParam(timer)
         val result: Boolean = saveTimer.execute(param)
