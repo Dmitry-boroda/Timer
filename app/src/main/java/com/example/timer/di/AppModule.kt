@@ -10,7 +10,7 @@ val appModule = module {
             lapTimer = get(),
             saveTimer = get(),
             timerModel = get(),
-            repositoryImpl = get()
+            repository = get()
         )
     }
 }

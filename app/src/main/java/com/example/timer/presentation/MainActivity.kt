@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.ToggleButton
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.timer.R
 import com.example.timer.view.CustomTimerView
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -1,8 +1,11 @@
 package com.example.timer.domain.model
 
 import com.example.timer.presentation.TextCallback
+import kotlinx.coroutines.flow.Flow
 import java.util.*
-
+/**
+ * Model Counter
+**/
 class TimerModel (){
 
     private var timer: Timer? = null

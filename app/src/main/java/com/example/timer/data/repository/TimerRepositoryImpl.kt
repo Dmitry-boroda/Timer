@@ -12,16 +12,22 @@ import kotlinx.coroutines.flow.Flow
 
 class TimerRepositoryImpl(
     private val timerStorage: TimerStorage,
-    //new
     private val timeDao: TimeDao
 ): TimerRepository {
 
-    val allTime: Flow<List<Time>> = timeDao.getListTime()
+    override val allTime: Flow<List<Time>>
+        get() = timeDao.getListTime()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     override suspend fun insert(time: Time){
         timeDao.insert(time)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    override suspend fun delAll() {
+        timeDao.deleteAll()
     }
 
     override fun saveTimer(saveParams: SaveTimerParam):Boolean {

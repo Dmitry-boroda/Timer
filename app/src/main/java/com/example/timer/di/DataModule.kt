@@ -33,9 +33,8 @@ val dataModule = module {
     single<TimerRepository> {
         TimerRepositoryImpl(timerStorage = get(), timeDao = get())
     }
-
-    factory {
-        TimerRepositoryImpl(timerStorage = get(), timeDao = get())
-    }
-
+    //factory {
+        //TimerRepositoryImpl(timerStorage = get(), timeDao = get())
+        //TimerRepository()
+    //}
 }
